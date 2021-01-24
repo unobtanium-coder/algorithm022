@@ -9,20 +9,20 @@ class Solution:
         dp[0], dp[1] = 1, 1
 
         for i in range(2, n+1):
-            if s[i-1]=='0':               #XXXXXXXXX0
-                if s[i-2] in {'1','2'}:           #XXXX[1-2]0
+            if s[i-1]=='0':                 #XXXXXXXXX[0]
+                if s[i-2] in {'1','2'}:         #XXXX[1-2][0]
                     dp[i] = dp[i-2]
-                else:                         #XXXX[3-9,0]0
+                else:                           #XXXX[3-9,0][0]
                     return 0
             elif s[i-1]<='6':               #XXXXXXXXX[1-6]
-                if s[i-2] in {'1','2'}:           #XXXX[1-2][1-6]
+                if s[i-2] in {'1','2'}:         #XXXX[1-2][1-6]
                     dp[i] = dp[i-2] + dp[i-1]
-                else:                         #XXXX[3-9,0][1-6]
+                else:                           #XXXX[3-9,0][1-6]
                     dp[i] = dp[i-1]
-            else:                         #XXXXXXXXX[7-9]
+            else:                           #XXXXXXXXX[7-9]
                 if s[i-2] == '1':               #XXXX[1][7-9]
                     dp[i] = dp[i-2] + dp[i-1]
-                else:                         #XXXX[0,2-9][7-9]
+                else:                           #XXXX[0,2-9][7-9]
                     dp[i] = dp[i-1]
             print(s[:i],dp)
 
@@ -35,20 +35,20 @@ class Solution:
   其中，dp[0]特定为1
 2、状态转移（描述边界条件）
   计算dp[i]时，
-    if s[i-1]=='0':               #XXXXXXXXX0
-        if s[i-2] in {'1','2'}:           #XXXX[1-2]0
+    if s[i-1]=='0':                 #XXXXXXXXX[0]
+        if s[i-2] in {'1','2'}:         #XXXX[1-2][0]
             dp[i] = dp[i-2]
-        else:                         #XXXX[3-9,0]0
+        else:                           #XXXX[3-9,0][0]
             return 0
     elif s[i-1]<='6':               #XXXXXXXXX[1-6]
-        if s[i-2] in {'1','2'}:           #XXXX[1-2][1-6]
+        if s[i-2] in {'1','2'}:         #XXXX[1-2][1-6]
             dp[i] = dp[i-2] + dp[i-1]
-        else:                         #XXXX[3-9,0][1-6]
+        else:                           #XXXX[3-9,0][1-6]
             dp[i] = dp[i-1]
-    else:                         #XXXXXXXXX[7-9]
+    else:                           #XXXXXXXXX[7-9]
         if s[i-2] == '1':               #XXXX[1][7-9]
             dp[i] = dp[i-2] + dp[i-1]
-        else:                         #XXXX[0,2-9][7-9]
+        else:                           #XXXX[0,2-9][7-9]
             dp[i] = dp[i-1]
     
     （由于初始化时特设dp[0],dp[1]且i从2算起，边界条件肯定满足，无需额外判定）
