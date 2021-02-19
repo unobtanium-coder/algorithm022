@@ -8,3 +8,4 @@ class Solution:
             ch = s[i]
             if dict[ord(ch)] == 1: return i
         return -1
+
